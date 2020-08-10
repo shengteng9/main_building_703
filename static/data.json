@@ -1,0 +1,21 @@
+{
+	"code": "0",
+	data: [{
+		title: "在最终测试阶段，新项目经理请求主题专家（SME）协助解决产品的一个紧急产量问题。
+		应使用以下哪一项？ ",
+		options: [{
+			"key": "A",
+			content: "专家判断",
+		}, {
+			key: "B",
+			content: "石川图"
+		}, {
+			key: "C",
+			content: "质量管理计划"
+		}, {
+			Key: "D",
+			content: "控制图"
+		}]
+	}],
+	message: "success"
+}

@@ -1,0 +1,42 @@
+.wrap {
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  background-color:#F0F2F5;
+  overflow: hidden;
+  overflow-y: scroll;
+  .container{
+    margin: 0 auto;
+    height: auto;
+    min-height: 100vh;
+    max-width:900px;
+    width:100%;
+    padding: 1.5rem 2rem;
+    background-color: #fff;
+    
+  }
+} 
+
+@media (max-width: 767.98px) {
+  .wrap{
+    .container{
+      width: 600px;
+    }
+  }       
+}
+
+@media (min-width:770px) and (max-width:900px){
+  .wrap{
+    .container {
+      width: 700px;
+    }
+  }
+}
+
+@media (min-width:900px) and (max-width:1200px){
+  .wrap{
+    .container {
+      width: 800px;
+    }
+  }
+}
