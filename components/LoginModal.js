@@ -42,6 +42,7 @@ class LoginModal extends React.Component {
         width="400px"
         visible={ishow}
         footer={null}
+        onCancel={this.handleCancel}
       >
         <Form
           {...layout}
