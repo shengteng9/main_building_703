@@ -10,6 +10,7 @@ import {
   getUserInfoSuccess,
   testResultSuccess,
   getWrongQaInfo,
+  signOut,
 } from "./actions";
 
 import { message } from 'antd';
@@ -73,7 +74,10 @@ function* fetchUserInfo(param) {
     // const wrongQaRes = yield AxiosHandler.get('/userQuestions', {params:{user_id:res.data.data.user_id}})
     // yield put(getUserInfoSuccess(wrongQaRes.data))
   } catch(e) {
-    console.log('fetchUserInfo', e)
+    if(e.response.status === 401) {
+      message.error(e.response.statusText)
+      yield put (signOut(false))
+    }
   }
 }
 
@@ -87,7 +91,7 @@ function* fetchWrongQaInfo () {
 }
 
 function* testResult(param) {
-  try{
+  try {
     const res = yield AxiosHandler.post('/testResult/', {...param.param})
     console.log('param', param)
     yield put(testResultSuccess(res.data))

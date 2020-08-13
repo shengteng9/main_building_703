@@ -38,6 +38,10 @@ export function loginSuccess(data) {
   return { type:actionTypes.LOGIN_SUCCESS, data}
 }
 
+export function signOut (data) {
+  return { type: actionTypes.SIGN_OUT, data}
+}
+
 export function loginModal(flag){
   return {type:actionTypes.LOGIN_MODAL, flag}
 }

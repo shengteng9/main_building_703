@@ -143,7 +143,7 @@ class Exercises extends React.Component {
     };
 
     const  radioWrap = {
-      paddingLeft: '25px',
+      paddingLeft: '2px',
       overflow: 'hidden',
       overflowX: 'scroll',
     }
@@ -153,6 +153,7 @@ class Exercises extends React.Component {
       height: "30px",
       lineHeight: "30px",
       wordWrap:'break-word',
+      textIndex:'0.5rem',
     };
 
     let { current } = this.state
@@ -219,7 +220,7 @@ class Exercises extends React.Component {
             showTotal={total => `共 ${total} 道题`} />
           <Row style={{marginTop:'15px'}}>
             <Col>
-              <Button type="primary" size="samll" onClick={this.onSubmit}>{this.props.isCheck?'重做':'提交'}</Button>
+              <Button type="primary" size="small" onClick={this.onSubmit}>{this.props.isCheck?'重做':'提交'}</Button>
             </Col>
           </Row>
         </div>

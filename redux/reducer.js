@@ -58,6 +58,16 @@ function reducer(state = initialState, action) {
         ...state,
         auth:{...authTemp}
       }
+
+    case actionTypes.SIGN_OUT:
+      console.log('==')
+      return {
+        ...state,
+        auth:{
+          ...state.auth,
+          isLogin:false,
+        }
+      }
     
     case actionTypes.GET_USER_INFO_SUCCESS:
       return {

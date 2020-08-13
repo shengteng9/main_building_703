@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Form, Input, Button, Checkbox, Space, Row} from "antd";
+import { Modal, Form, Input, Button, Checkbox, Space, Row } from "antd";
 
 import { connect } from "react-redux";
 import { login, loginModal } from "../redux/actions";
@@ -7,6 +7,7 @@ import { login, loginModal } from "../redux/actions";
 class LoginModal extends React.Component {
   constructor(props) {
     super(props);
+    this.formRef = React.createRef();
   }
 
   handleCancel = (e) => {
@@ -14,17 +15,20 @@ class LoginModal extends React.Component {
   };
 
   onFinish = (values) => {
-    let param = {...values}
-    if( param.remember) {
-      delete param.remember
+    let param = { ...values };
+    if (param.remember) {
+      delete param.remember;
     }
-    this.props.login(param)
+    this.props.login(param);
   };
 
   onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
 
+  submitHandle = () => {
+    this.formRef.current.submit()
+  }
 
   render() {
     const { ishow } = this.props;
@@ -41,7 +45,14 @@ class LoginModal extends React.Component {
         title="登录"
         width="400px"
         visible={ishow}
-        footer={null}
+        footer={
+          <Space>
+            <Button type="primary" onClick={this.submitHandle}>
+              确定
+            </Button>
+            <Button onClick={this.handleCancel}>取消</Button>
+          </Space>
+        }
         onCancel={this.handleCancel}
       >
         <Form
@@ -50,6 +61,7 @@ class LoginModal extends React.Component {
           initialValues={{ remember: true }}
           onFinish={this.onFinish}
           onFinishFailed={this.onFinishFailed}
+          ref={this.formRef}
         >
           <Form.Item
             label="账号"
@@ -60,9 +72,9 @@ class LoginModal extends React.Component {
           </Form.Item>
 
           <Form.Item
-            label="密码"
+            label="口令"
             name="password"
-            rules={[{ required: true, message: "请输入密码" }]}
+            rules={[{ required: true, message: "请输入口令" }]}
           >
             <Input.Password />
           </Form.Item>
@@ -70,15 +82,6 @@ class LoginModal extends React.Component {
           {/* <Form.Item {...tailLayout} name="remember" valuePropName="checked">
             <Checkbox>记住密码</Checkbox>
           </Form.Item> */}
-
-          <Form.Item {...tailLayout}>
-            <Row>
-              <Space>
-              <Button type="primary" htmlType="submit">确定</Button>
-              <Button onClick={this.handleCancel}>取消</Button>
-              </Space>
-            </Row>
-          </Form.Item>
         </Form>
       </Modal>
     );
@@ -87,18 +90,16 @@ class LoginModal extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    ishow:state.auth.ishow,
-    isLogin:state.auth.isLogin,
-  }
-}
+    ishow: state.auth.ishow,
+    isLogin: state.auth.isLogin,
+  };
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     login: (param) => dispatch(login(param)),
-    loginModal: (flag) => dispatch( loginModal(flag))
-  }
-}
+    loginModal: (flag) => dispatch(loginModal(flag)),
+  };
+};
 
-export default connect(mapStateToProps,mapDispatchToProps)(LoginModal);
-
-
+export default connect(mapStateToProps, mapDispatchToProps)(LoginModal);

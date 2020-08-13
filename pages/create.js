@@ -263,6 +263,7 @@ class Create extends React.Component {
                           <Form.Item wrapperCol={{ offset: 0, span: 24 }}>
                             <Button
                               type="primary"
+                              size="small"
                               style={{ marginTop: "10px",marginRight:"10px" }}
                               onClick={()=>this.addQuestionHandler('add')}
                             >
@@ -289,6 +290,7 @@ class Create extends React.Component {
               <Form.Item wrapperCol={{ offset: 0, span: 24 }}>
                 <Button
                   type="primary"
+                  size="small"
                   style={{ marginTop: "10px" }}
                   onClick={this.submitHandle}
                 >
