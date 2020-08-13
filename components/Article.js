@@ -33,7 +33,7 @@ const Article = porps => {
 					font-size:0.875rem;
 				}
 			`}</style>
-	    </div>
+	  </div>
 	)
 }
 
