@@ -20,9 +20,16 @@ import {
   Col,
   Pagination,
 } from "antd";
-import { UploadOutlined, InboxOutlined } from "@ant-design/icons";
-import { withRouter } from "next/router";
 
+import { withRouter } from "next/router";
+import Header from "../components/Header";
+import Layout from "../components/Layout";
+import HeaderInfo from "../components/HeaderInfo";
+
+const headerInfo = {
+  title: "zhulou703",
+  description: "zhulou703的个人站点",
+};
 
 import '../style/exercises.less';
 
@@ -160,8 +167,8 @@ class Exercises extends React.Component {
     let {isCheck, yourResult} = this.props
 
     return (
-      <div className="wrap">
-        <div className="container">
+      <Layout>
+        <div className="content_wrap">
           <Form
             name="validate_other"
             {...formItemLayout}
@@ -224,7 +231,7 @@ class Exercises extends React.Component {
             </Col>
           </Row>
         </div>
-      </div>
+      </Layout>
     );
   }
 }

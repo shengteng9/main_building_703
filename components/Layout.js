@@ -4,12 +4,18 @@ import {
   node,
   string
 } from 'prop-types'
+import Footer from '../components/Footer'
+import '../style/common.less'
 
-const Layout = (props) => {
+
+const Layout = ({children}) => {
   return (
-    <div className="wrap">
-      
-    </dvi>
+    <div className='wrap'>
+      <div className="container">
+        {children}
+      </div>
+      <Footer />
+    </div>
   )
 }
 

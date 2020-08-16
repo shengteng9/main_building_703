@@ -1,3 +1,9 @@
+@import '~antd/lib/style/themes/default.less';
+@import '~antd/dist/antd.less'; // 引入官方提供的 less 样式入口文件
+
+@primary-color: #1781b5; // 全局主色
+@link-color: #1781b5;// 链接色
+@border-color-base: #1781b5; // 边框色
 .wrap {
   padding: 0;
   margin: 0;
@@ -11,9 +17,43 @@
     min-height: 100vh;
     max-width:900px;
     width:100%;
-    padding: 1.5rem 2rem;
     background-color: #fff;
-    
+    .header_wrap{
+      display: flex;
+      align-items: center;
+      color: #fff;
+      height: 5rem;
+      padding: 0 1rem;
+      background-color: #1781b5;
+      justify-content: space-between;
+      .na_item{
+        flex:1;
+      }
+      .nav_item_tools{
+        flex:0 0 4rem;
+      }
+    }
+    .content_wrap{
+      padding: 1rem 1rem;
+    }
+  }
+  .footer_wrap{
+    margin: 0 auto 0;
+    height: 3rem;
+    max-width:900px;
+    width: 100%;
+    background-color: #66a9c9;
+    color:#fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    nav{
+      a{
+        color: #fff;
+        vertical-align: middle;
+      }
+    }
   }
 } 
 
@@ -21,9 +61,21 @@
   .wrap {
     .container {
       width: 375px;
-      padding: 0.5rem;
+      // padding: 0.5rem;
       overflow-x: hidden;
       overflow-y: scroll;
+      .header_wrap{
+        padding: 0.5rem;
+        height: 2rem;
+      }
+      .content_wrap{
+        padding: 0.5rem;
+      }
+    }
+    .footer_wrap{
+      width: 375px;
+      height: 1rem;
+      padding: 0 0.5rem;
     }
   }
 }
@@ -32,7 +84,18 @@
   .wrap {
     .container {
       width: auto;
-      padding: 1rem;
+      .header_wrap{
+        padding: 0.3rem;
+        height: 3rem;
+      }
+      .content_wrap{
+        padding: 0.3rem;
+      }
+    }
+    .footer_wrap{
+      width: auto;
+      height: 1.5rem;
+      padding: 0 0.3rem;
     }
   }
 }
@@ -41,6 +104,18 @@
   .wrap{
     .container{
       width: 600px;
+      .header_wrap {
+        padding: 0.5rem;
+        height: 3.5rem;
+      }
+      .content_wrap {
+        padding: 0.5rem;
+      }
+    }
+    .footer_wrap{
+      width: 600px;
+      height: 1.75rem;
+      padding: 0 0.5rem;
     }
   }       
 }
@@ -49,6 +124,18 @@
   .wrap{
     .container {
       width: 700px;
+      .header_wrap {
+        padding: 0.8rem;
+        height: 4rem;
+      }
+      .content_wrap{
+        padding: 0.8rem;
+      }
+    }
+    .footer_wrap{
+      width: 700px;
+      height: 2rem;
+      padding: 0 0.8rem;
     }
   }
 }
@@ -57,6 +144,18 @@
   .wrap{
     .container {
       width: 800px;
+      .header_wrap{
+        padding: 1rem;
+        height: 5rem;
+      }
+      .content_wrap {
+        padding: 1rem;
+      }
+    }
+    .footer_wrap{
+      width: 800px;
+      height: 2.5rem;
+      padding: 0 1rem;
     }
   }
 }

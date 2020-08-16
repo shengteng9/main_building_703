@@ -18,12 +18,15 @@ import {
   message,
 } from "antd";
 
-import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
+import { PlusOutlined } from "@ant-design/icons";
 
 import { connect } from "react-redux";
 import { addExercise } from "../redux/actions";
 
-const resMapping = ['A', 'B', 'C', 'D']
+import Header from "../components/Header";
+import Layout from "../components/Layout";
+
+const resMapping = ["A", "B", "C", "D"];
 
 const formItemLayout = {
   labelCol: { span: 6 },
@@ -46,7 +49,7 @@ class Create extends React.Component {
   };
 
   addQuestionHandler = (type) => {
-    this.validateFormHandler(type)
+    this.validateFormHandler(type);
   };
 
   validateFormHandler = (submitcb) => {
@@ -54,13 +57,16 @@ class Create extends React.Component {
       .validateFields()
       .then((values) => {
         if (values && values.questions.length > 0) {
-          this.setState((state, props) => {
-            return {
-              list: [...state.list, ...values.questions],
-            };
-          }, ()=>{
-            submitcb!=='add'&&submitcb()
-          });
+          this.setState(
+            (state, props) => {
+              return {
+                list: [...state.list, ...values.questions],
+              };
+            },
+            () => {
+              submitcb !== "add" && submitcb();
+            }
+          );
 
           this.formRef.current.setFieldsValue({
             questions: [
@@ -74,8 +80,8 @@ class Create extends React.Component {
       })
       .catch((err) => {
         console.log("err ", err);
-        if(submitcb){
-          message.warning('请先添加题目')
+        if (submitcb) {
+          message.warning("请先添加题目");
         }
       });
   };
@@ -97,9 +103,9 @@ class Create extends React.Component {
   // 提交
   submitHandle = () => {
     //console.log(this.formRef.current.getFieldValue('exerciseName'))
-    if(this._submitParamFormat().length=== 0) {
-      this.addQuestionHandler(this.submitHandle)
-      return 
+    if (this._submitParamFormat().length === 0) {
+      this.addQuestionHandler(this.submitHandle);
+      return;
     }
     let testName = this.formRef.current.getFieldValue("exerciseName");
     this.props.addExercise({
@@ -130,36 +136,42 @@ class Create extends React.Component {
   };
 
   editHandle = (item, index, type) => {
-    let tmp = this.state.list
-    if (type === 'delete') {
-      tmp.splice(index, 1)
-      return this.setState((state)=>{
+    let tmp = this.state.list;
+    if (type === "delete") {
+      tmp.splice(index, 1);
+      return this.setState((state) => {
         return {
-          list: [...tmp]
-        }
-      })
+          list: [...tmp],
+        };
+      });
     }
-    
+
     this.formRef.current.setFieldsValue({
-      questions: [{...item}],
+      questions: [{ ...item }],
     });
-    tmp.splice(index, 1)
+    tmp.splice(index, 1);
     this.setState({
-      ishow:false,
-      list:[...tmp]
-    })
-  }
+      ishow: false,
+      list: [...tmp],
+    });
+  };
 
   componentWillMount() {
-    console.log('== Router ', this.props.auth)
+    console.log("== Router ", this.props.auth);
   }
 
   render() {
     let { list } = this.state;
     return (
       <>
-        <div className="wrap">
+        {/* <div className="wrap">
           <div className="container">
+
+          </div>
+        </div> */}
+        <Layout>
+          <Header />
+          <div className="content_wrap">
             <Form
               name="validate_other"
               {...formItemLayout}
@@ -264,8 +276,8 @@ class Create extends React.Component {
                             <Button
                               type="primary"
                               size="small"
-                              style={{ marginTop: "10px",marginRight:"10px" }}
-                              onClick={()=>this.addQuestionHandler('add')}
+                              style={{ marginTop: "10px", marginRight: "10px" }}
+                              onClick={() => this.addQuestionHandler("add")}
                             >
                               <PlusOutlined /> 添加题目
                             </Button>
@@ -299,7 +311,7 @@ class Create extends React.Component {
               </Form.Item>
             </Form>
           </div>
-        </div>
+        </Layout>
         <Modal
           visible={this.state.ishow}
           title="已添加题目"
@@ -307,24 +319,39 @@ class Create extends React.Component {
           onCancel={this.handleCancel}
           footer={null}
           bodyStyle={{
-            minHeight:'200px',
-            maxHeight:'400px',
-            overflow:'scroll'
+            minHeight: "200px",
+            maxHeight: "400px",
+            overflow: "scroll",
           }}
         >
           <div>
             {this.state.list.map((item, i) => {
               return (
-                
-                <Card 
-                  key={i} 
-                  size="small" 
-                  title={item.title}  
-                  extra={<>
-                    <Button type="text" size="small" onClick={()=>this.editHandle(item, i, 'edit')}>编辑</Button>
-                    <Button type="text" size="small" danger onClick={()=>this.editHandle(item, i, 'delete')}>删除</Button>
-                  </>} 
-                  style={{marginBottom:'10px'}}>
+                <Card
+                  key={i}
+                  size="small"
+                  title={item.title}
+                  extra={
+                    <>
+                      <Button
+                        type="text"
+                        size="small"
+                        onClick={() => this.editHandle(item, i, "edit")}
+                      >
+                        编辑
+                      </Button>
+                      <Button
+                        type="text"
+                        size="small"
+                        danger
+                        onClick={() => this.editHandle(item, i, "delete")}
+                      >
+                        删除
+                      </Button>
+                    </>
+                  }
+                  style={{ marginBottom: "10px" }}
+                >
                   <p>A:{item.optionA}</p>
                   <p>B:{item.optionB}</p>
                   <p>C:{item.optionC}</p>
@@ -332,7 +359,6 @@ class Create extends React.Component {
                   <p>解析:{item.analysis}</p>
                   <div>正确答案：{resMapping[item.answer]}</div>
                 </Card>
-                
               );
             })}
           </div>
@@ -344,7 +370,7 @@ class Create extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    auth:state.auth
+    auth: state.auth,
   };
 };
 
