@@ -60,12 +60,12 @@ function reducer(state = initialState, action) {
       }
 
     case actionTypes.SIGN_OUT:
-      console.log('==')
       return {
         ...state,
         auth:{
           ...state.auth,
           isLogin:false,
+          ishow: false,
         }
       }
     

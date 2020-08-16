@@ -62,7 +62,10 @@ function* loginReq(param) {
       yield message.success('登录成功！')
     }
   } catch (e) {
-    console.log('loginReq', e)
+    if(e.response.status ){
+      message.error(e.response.statusText)
+      yield put (signOut(false))
+    }
   }
 }
 
